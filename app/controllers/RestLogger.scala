@@ -8,6 +8,7 @@ import play.api.mvc._
 
 object RestLogger extends Controller {
 
+  // some old code, probably donn't need it but keep around for now.
 //  def index (path : String) = Action { implicit request =>
 //
 //    Logger.info(path)
@@ -36,7 +37,7 @@ object RestLogger extends Controller {
   def index (path : String) = Action(parse.json) { request =>
 
     val now = Calendar.getInstance().getTime()
-    val sep = "-" * 100
+    val sep = "-" * 80
     val output =
         sep + "\n" +
         now + " " + " - " + request.method + " /" + path + "\n" +
@@ -45,13 +46,6 @@ object RestLogger extends Controller {
     println(output)
 
     Ok("success")
-  }
-
-  def parseBodyToString(body: AnyContent): String = {
-
-    body.asRaw
-    ""
-
   }
 
 }
