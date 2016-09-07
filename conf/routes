@@ -12,6 +12,6 @@ GET         /assets/*file        controllers.Assets.at(path="/public", file)
 # POST        /restLogger          controllers.RestLogger.index(path="")
 
 
-GET         /*path               controllers.RestLogger.index(path)
-POST        /*path               controllers.RestLogger.index(path)
+GET         /*path               controllers.RestLogger.getMethod(path)
+POST        /*path               controllers.RestLogger.postMethod(path)
 

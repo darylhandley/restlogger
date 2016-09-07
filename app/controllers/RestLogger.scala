@@ -34,14 +34,34 @@ object RestLogger extends Controller {
 
   // TODO: does not currently support get since GET has no body
   // TODO: should add another method for GET probably and possibly DELETE
-  def index (path : String) = Action(parse.json) { request =>
+  def postMethod (path : String) = Action(parse.json) { request =>
 
     val now = Calendar.getInstance().getTime()
-    val sep = "-" * 80
+    val sep = "-" * 50
     val output =
         sep + "\n" +
         now + " " + " - " + request.method + " /" + path + "\n" +
         Json.prettyPrint(request.body) +  "\n" +
+        sep + "\n"
+    println(output)
+
+    Ok("success")
+  }
+
+  def getMethod (path : String) = Action { request =>
+
+    val now = Calendar.getInstance().getTime()
+    val sep = "-" * 50
+
+    var params = ""
+    request.queryString.foreach(mapItem => {
+      params += mapItem._1 + "=" + mapItem._2.mkString(",") + "\n"
+    })
+
+    val output =
+      sep + "\n" +
+        now + " " + " - " + request.method + " /" + path + "\n" +
+        params +
         sep + "\n"
     println(output)
 
